@@ -1,4 +1,6 @@
-﻿using SimpleInjector;
+﻿using api.Implementation;
+using api.Interfaces;
+using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 using SimpleInjector.Lifestyles;
 using System;
@@ -17,7 +19,7 @@ namespace Api
             var container = new Container();
 
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
-            //container.Register<IService, OnCoursesImplementation>(Lifestyle.Scoped);
+            container.Register<IDbService, DbImplementation>(Lifestyle.Scoped);
             container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
 
             container.Verify();
