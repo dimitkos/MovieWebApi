@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="DbTypes\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\AddMovieRequest.cs" />
+    <Compile Include="Requests\DeleteMovieRequest.cs" />
     <Compile Include="Responses\GetMoviesResponse.cs" />
   </ItemGroup>
   <ItemGroup>
