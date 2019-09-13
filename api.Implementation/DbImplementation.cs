@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace api.Implementation
 {
-    public class DbImplementation
+    public partial class DbImplementation
     {
         private SqlConnection GetSqlConnection()
         {
