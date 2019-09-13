@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiImplementation.cs" />
     <Compile Include="DbImplementation.cs" />
     <Compile Include="DbImplementation.Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

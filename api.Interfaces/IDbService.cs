@@ -11,12 +11,12 @@ namespace api.Interfaces
 {
     public interface IDbService
     {
-        GetMoviesResponse GetMovies();
+        GetMoviesResponse GetMoviesFromDb();
 
-        bool AddMovie(AddMovieRequest request);
+        bool AddMovieinDb(AddMovieRequest request);
 
-        bool UpdateMovie(Movie request);
+        bool UpdateMovieInDb(Movie request);
 
-        bool DeleteMovie(DeleteMovieRequest request);
+        bool DeleteMovieFromDB(DeleteMovieRequest request);
     }
 }

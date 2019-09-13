@@ -12,7 +12,7 @@ namespace api.Implementation
 {
     public partial class DbImplementation
     {
-        public GetMoviesResponse GetMovies()
+        public GetMoviesResponse GetMoviesFromDb()
         {
             string sql = @"Select * From movie with no lock";
             using (var con = GetSqlConnection())
@@ -26,7 +26,7 @@ namespace api.Implementation
             }
         }
 
-        public bool AddMovie(AddMovieRequest request)
+        public bool AddMovieinDb(AddMovieRequest request)
         {
             string sql = @"INSERT INTO Movie (Title,Name,Description) VALUES (@Title,@Name,@Description) ";
             int result;
@@ -38,7 +38,7 @@ namespace api.Implementation
             return result == 1;
         }
 
-        public bool UpdateMovie(Movie request)
+        public bool UpdateMovieInDb(Movie request)
         {
             string sql = @"UPDATE Movie SET Name = @Name, Description = @Description WHERE Title = @Title ";
             int result;
@@ -50,7 +50,7 @@ namespace api.Implementation
             return result == 1;
         }
 
-        public bool DeleteMovie(DeleteMovieRequest request)
+        public bool DeleteMovieFromDB(DeleteMovieRequest request)
         {
             string sql = @"DELETE FROM  Movie WHERE Title=@Title";
             int result;
