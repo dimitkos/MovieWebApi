@@ -1,4 +1,5 @@
-﻿using System;
+﻿using api.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace api.Implementation
 {
-    public partial class DbImplementation
+    public partial class DbImplementation : IDbService
     {
         private SqlConnection GetSqlConnection()
         {
