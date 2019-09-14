@@ -54,7 +54,7 @@ namespace api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         [ActionName("updateMovie")]
         public HttpResponseMessage UpdateMovie([FromBody] Movie request)
         {
@@ -69,5 +69,22 @@ namespace api.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, " Movie Not Updated");
             }
         }
+
+        [HttpDelete]
+        [ActionName("deleteMovie")]
+        public HttpResponseMessage DeleteMovie([FromBody] DeleteMovieRequest request)
+        {
+            var response = apiService.DeleteMovie(request);
+
+            if (response == true)
+            {
+                return Request.CreateResponse<bool>(HttpStatusCode.OK, response);
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, " Movie Not Deleted");
+            }
+        }
+
     }
 }

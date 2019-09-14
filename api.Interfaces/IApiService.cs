@@ -17,6 +17,6 @@ namespace api.Interfaces
 
         bool UpdateMovie(Movie request);
 
-        bool DeleteMovieRequest(DeleteMovieRequest request);
+        bool DeleteMovie(DeleteMovieRequest request);
     }
 }

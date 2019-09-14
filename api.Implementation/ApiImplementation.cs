@@ -44,7 +44,7 @@ namespace api.Implementation
             
         }
 
-        public bool DeleteMovieRequest(DeleteMovieRequest request)
+        public bool DeleteMovie(DeleteMovieRequest request)
         {
             if (CheckIfDeleteMovieRequestIsValid(request))
             {
