@@ -106,6 +106,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\api.Controllers\api.Controllers.csproj">
+      <Project>{16757f6d-a34b-4255-a754-a8f657add190}</Project>
+      <Name>api.Controllers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\api.Implementation\api.Implementation.csproj">
       <Project>{20BFBE12-DD4D-4B0E-9405-5D955132EF64}</Project>
       <Name>api.Implementation</Name>
