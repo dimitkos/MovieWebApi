@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using api.Implementation;
+using api.Types.DbTypes;
 using api.Types.Requests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -22,8 +23,6 @@ namespace ApiUnitTest
         [TestMethod]
         public void GetMovies()
         {
-            var service = new DbImplementation();
-
             var response = service.GetMoviesFromDb();
 
             Xunit.Assert.NotNull(response.Movies);
@@ -46,6 +45,32 @@ namespace ApiUnitTest
 
         }
 
+        [TestMethod]
+        public void UpdateMovie()
+        {
+            Movie request = new Movie()
+            {
+                Title = "A10",
+                Name = "Update TEST NAME",
+                Description = "Update TEST DESCRIPTION"
+            };
 
+            var response = service.UpdateMovieInDb(request);
+
+            Xunit.Assert.True(response);
+        }
+
+        [TestMethod]
+        public void DeleteMovie()
+        {
+            DeleteMovieRequest request = new DeleteMovieRequest()
+            {
+                Title = "A10"
+            };
+
+            var response = service.DeleteMovieFromDB(request);
+
+            Xunit.Assert.True(response);
+        }
     }
 }
