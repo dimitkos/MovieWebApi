@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace api.Implementation
 {
-    public class ApiImplementation
+    public class ApiImplementation : IApiService
     {
         private readonly IDbService dbService;
 
