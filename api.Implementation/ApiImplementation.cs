@@ -1,4 +1,5 @@
 ﻿using api.Interfaces;
+using api.Types.DbTypes;
 using api.Types.Requests;
 using api.Types.Responses;
 using System;
@@ -33,6 +34,45 @@ namespace api.Implementation
         }
 
 
+        public bool UpdateMovie(Movie request)
+        {
+            if (CheckIfUpdateMovieRequestIsValid(request))
+            {
+                return dbService.UpdateMovieInDb(request);
+            }
+            return false;
+            
+        }
+
+        public bool DeleteMovieRequest(DeleteMovieRequest request)
+        {
+            if (CheckIfDeleteMovieRequestIsValid(request))
+            {
+                return dbService.DeleteMovieFromDB(request);
+            }
+            return false;
+        }
+
+        #region private methods
+
+        private bool CheckIfDeleteMovieRequestIsValid(DeleteMovieRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request.Title))
+            {
+                throw new Exception("Invalid Request");
+            }
+            return true;
+        }
+
+        private bool CheckIfUpdateMovieRequestIsValid(Movie request)
+        {
+            if (string.IsNullOrWhiteSpace(request.Name) || string.IsNullOrWhiteSpace(request.Title) || string.IsNullOrWhiteSpace(request.Description))
+            {
+                throw new Exception("Invalid Request");
+            }
+            return true;
+        }
+
         private bool CheckIfAddMovieRequestIsValid(AddMovieRequest request)
         {
             if(string.IsNullOrWhiteSpace(request.Name) || string.IsNullOrWhiteSpace(request.Title) || string.IsNullOrWhiteSpace(request.Description))
@@ -41,5 +81,7 @@ namespace api.Implementation
             }
             return true;
         }
+
+        #endregion
     }
 }
