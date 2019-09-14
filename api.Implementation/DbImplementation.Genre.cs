@@ -37,5 +37,17 @@ namespace api.Implementation
             }
             return result == 1;
         }
+
+        public bool UpdateGenreInDb(Genre request)
+        {
+            string sql = @"UPDATE Movie SET Name = @Name, Description = @Description , MovieTitle = @MovieTitle WHERE Title = @Title ";
+            int result;
+            using (var con = GetSqlConnection())
+            {
+                var parameters = new { request.Title, request.Name, request.Description,request.MovieTitle };
+                result = con.QuerySingleOrDefault<int>(sql, parameters);
+            }
+            return result == 1;
+        }
     }
 }

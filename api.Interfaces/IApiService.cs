@@ -22,5 +22,7 @@ namespace api.Interfaces
         GetGenresResponse GetGenres();
 
         bool AddGenre(AddGenreRequest request);
+
+        bool UpdateGenre(Genre request);
     }
 }

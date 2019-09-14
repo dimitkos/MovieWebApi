@@ -67,6 +67,16 @@ namespace api.Implementation
             return false;
         }
 
+        public bool UpdateGenre(Genre request)
+        {
+            if (CheckIfUpdateGenreRequestIsValid(request))
+            {
+                return dbService.UpdateGenreInDb(request);
+            }
+            return false;
+
+        }
+
         #region private methods
 
         private bool CheckIfDeleteMovieRequestIsValid(DeleteMovieRequest request)
@@ -99,6 +109,16 @@ namespace api.Implementation
         private bool CheckIfAddGenreRequestIsValid(AddGenreRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.Name) || string.IsNullOrWhiteSpace(request.Title) 
+                || string.IsNullOrWhiteSpace(request.Description) || string.IsNullOrWhiteSpace(request.MovieTitle))
+            {
+                throw new Exception("Invalid Request");
+            }
+            return true;
+        }
+
+        private bool CheckIfUpdateGenreRequestIsValid(Genre request)
+        {
+            if (string.IsNullOrWhiteSpace(request.Name) || string.IsNullOrWhiteSpace(request.Title)
                 || string.IsNullOrWhiteSpace(request.Description) || string.IsNullOrWhiteSpace(request.MovieTitle))
             {
                 throw new Exception("Invalid Request");

@@ -1,4 +1,5 @@
 ﻿using api.Interfaces;
+using api.Types.DbTypes;
 using api.Types.Requests;
 using api.Types.Responses;
 using System;
@@ -52,5 +53,22 @@ namespace api.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, " Genre Not Added");
             }
         }
+
+        [HttpPut]
+        [ActionName("updateGenre")]
+        public HttpResponseMessage UpdateGenre([FromBody] Genre request)
+        {
+            var response = apiService.UpdateGenre(request);
+
+            if (response == true)
+            {
+                return Request.CreateResponse<bool>(HttpStatusCode.OK, response);
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, " Genre Not Updated");
+            }
+        }
+
     }
 }
