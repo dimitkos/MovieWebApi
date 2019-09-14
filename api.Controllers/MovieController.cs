@@ -1,4 +1,5 @@
 ﻿using api.Interfaces;
+using api.Types.DbTypes;
 using api.Types.Requests;
 using api.Types.Responses;
 using System;
@@ -53,5 +54,20 @@ namespace api.Controllers
             }
         }
 
+        [HttpPost]
+        [ActionName("updateMovie")]
+        public HttpResponseMessage UpdateMovie([FromBody] Movie request)
+        {
+            var response = apiService.UpdateMovie(request);
+
+            if (response == true)
+            {
+                return Request.CreateResponse<bool>(HttpStatusCode.OK, response);
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, " Movie Not Updated");
+            }
+        }
     }
 }
