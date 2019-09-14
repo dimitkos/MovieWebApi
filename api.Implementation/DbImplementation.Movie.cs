@@ -14,7 +14,7 @@ namespace api.Implementation
     {
         public GetMoviesResponse GetMoviesFromDb()
         {
-            string sql = @"Select * From movie with no lock";
+            string sql = @"Select * From movie with (nolock)";
             using (var con = GetSqlConnection())
             {
                 var response = con.Query<Movie>(sql);
