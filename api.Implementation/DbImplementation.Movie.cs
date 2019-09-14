@@ -33,7 +33,7 @@ namespace api.Implementation
             using (var con = GetSqlConnection())
             {
                 var parameters = new { request.Title, request.Name, request.Description };
-                result = con.QuerySingleOrDefault<int>(sql, parameters);
+                result = con.Execute(sql, parameters);
             }
             return result == 1;
         }
@@ -45,7 +45,7 @@ namespace api.Implementation
             using (var con = GetSqlConnection())
             {
                 var parameters = new { request.Title, request.Name, request.Description };
-                result = con.QuerySingleOrDefault<int>(sql, parameters);
+                result = con.Execute(sql, parameters);
             }
             return result == 1;
         }
@@ -57,7 +57,7 @@ namespace api.Implementation
             using (var con = GetSqlConnection())
             {
                 var parameters = new { request.Title };
-                result = con.QuerySingleOrDefault<int>(sql, parameters);
+                result = con.Execute(sql, parameters);
             }
             return result == 1;
         }
