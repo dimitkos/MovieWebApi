@@ -24,5 +24,7 @@ namespace api.Interfaces
         bool AddGenre(AddGenreRequest request);
 
         bool UpdateGenre(Genre request);
+
+        bool DeleteGenre(DeleteGenreRequest request);
     }
 }

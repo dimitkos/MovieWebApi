@@ -40,11 +40,23 @@ namespace api.Implementation
 
         public bool UpdateGenreInDb(Genre request)
         {
-            string sql = @"UPDATE Movie SET Name = @Name, Description = @Description , MovieTitle = @MovieTitle WHERE Title = @Title ";
+            string sql = @"UPDATE Genre SET Name = @Name, Description = @Description , MovieTitle = @MovieTitle WHERE Title = @Title ";
             int result;
             using (var con = GetSqlConnection())
             {
                 var parameters = new { request.Title, request.Name, request.Description,request.MovieTitle };
+                result = con.QuerySingleOrDefault<int>(sql, parameters);
+            }
+            return result == 1;
+        }
+
+        public bool DeleteGenreFromDB(DeleteGenreRequest request)
+        {
+            string sql = @"DELETE FROM  Genre WHERE Title=@Title";
+            int result;
+            using (var con = GetSqlConnection())
+            {
+                var parameters = new { request.Title };
                 result = con.QuerySingleOrDefault<int>(sql, parameters);
             }
             return result == 1;

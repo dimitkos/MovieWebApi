@@ -49,6 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\AddGenreRequest.cs" />
     <Compile Include="Requests\AddMovieRequest.cs" />
+    <Compile Include="Requests\DeleteGenreRequest.cs" />
     <Compile Include="Requests\DeleteMovieRequest.cs" />
     <Compile Include="Responses\GetGenresResponse.cs" />
     <Compile Include="Responses\GetMoviesResponse.cs" />

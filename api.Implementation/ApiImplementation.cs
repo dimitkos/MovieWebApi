@@ -77,6 +77,15 @@ namespace api.Implementation
 
         }
 
+        public bool DeleteGenre(DeleteGenreRequest request)
+        {
+            if (CheckIfDeleteGenreRequestIsValid(request))
+            {
+                return dbService.DeleteGenreFromDB(request);
+            }
+            return false;
+        }
+
         #region private methods
 
         private bool CheckIfDeleteMovieRequestIsValid(DeleteMovieRequest request)
@@ -125,8 +134,16 @@ namespace api.Implementation
             }
             return true;
         }
-        
 
+        private bool CheckIfDeleteGenreRequestIsValid(DeleteGenreRequest request)
+        {
+            if ( string.IsNullOrWhiteSpace(request.Title))
+            {
+                throw new Exception("Invalid Request");
+            }
+            return true;
+        }
+        
         #endregion
     }
 }

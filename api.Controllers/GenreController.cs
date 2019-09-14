@@ -70,5 +70,20 @@ namespace api.Controllers
             }
         }
 
+        [HttpDelete]
+        [ActionName("deleteGenre")]
+        public HttpResponseMessage DeleteMovie([FromBody] DeleteGenreRequest request)
+        {
+            var response = apiService.DeleteGenre(request);
+
+            if (response == true)
+            {
+                return Request.CreateResponse<bool>(HttpStatusCode.OK, response);
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, " Genre Not Deleted");
+            }
+        }
     }
 }
