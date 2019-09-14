@@ -18,5 +18,7 @@ namespace api.Interfaces
         bool UpdateMovieInDb(Movie request);
 
         bool DeleteMovieFromDB(DeleteMovieRequest request);
+
+        GetGenresResponse GetGenresFromDb();
     }
 }

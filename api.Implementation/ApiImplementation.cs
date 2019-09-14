@@ -53,6 +53,11 @@ namespace api.Implementation
             return false;
         }
 
+        public GetGenresResponse GetGenres()
+        {
+            return dbService.GetGenresFromDb();
+        }
+
         #region private methods
 
         private bool CheckIfDeleteMovieRequestIsValid(DeleteMovieRequest request)

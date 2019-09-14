@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenreController.cs" />
     <Compile Include="MovieController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
