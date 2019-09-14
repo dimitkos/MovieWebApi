@@ -19,6 +19,7 @@ namespace Api
             var container = new Container();
 
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+            container.Register<IApiService, ApiImplementation>(Lifestyle.Scoped);
             container.Register<IDbService, DbImplementation>(Lifestyle.Scoped);
             container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
 
