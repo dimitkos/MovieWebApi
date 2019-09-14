@@ -1,4 +1,5 @@
 ﻿using api.Interfaces;
+using api.Types.Requests;
 using api.Types.Responses;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,22 @@ namespace api.Controllers
             else
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, " Genres Not Found");
+            }
+        }
+
+        [HttpPost]
+        [ActionName("addGenre")]
+        public HttpResponseMessage AddMovie([FromBody]AddGenreRequest request)
+        {
+            var response = apiService.AddGenre(request);
+
+            if (response == true)
+            {
+                return Request.CreateResponse<bool>(HttpStatusCode.OK, response);
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, " Genre Not Added");
             }
         }
     }

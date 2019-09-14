@@ -20,5 +20,7 @@ namespace api.Interfaces
         bool DeleteMovieFromDB(DeleteMovieRequest request);
 
         GetGenresResponse GetGenresFromDb();
+
+        bool AddGenreInDb(AddGenreRequest request);
     }
 }

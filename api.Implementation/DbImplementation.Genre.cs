@@ -1,4 +1,5 @@
 ﻿using api.Types.DbTypes;
+using api.Types.Requests;
 using api.Types.Responses;
 using Dapper;
 using System;
@@ -23,6 +24,18 @@ namespace api.Implementation
                     Genres = response
                 };
             }
+        }
+
+        public bool AddGenreInDb(AddGenreRequest request)
+        {
+            string sql = @"INSERT INTO Genre (Title,Name,Description,MovieYitle) VALUES (@Title,@Name,@Description,@MovieTitle) ";
+            int result;
+            using (var con = GetSqlConnection())
+            {
+                var parameters = new { request.Title, request.Name, request.Description };
+                result = con.QuerySingleOrDefault<int>(sql, parameters);
+            }
+            return result == 1;
         }
     }
 }
