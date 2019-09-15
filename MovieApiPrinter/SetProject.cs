@@ -48,7 +48,8 @@ namespace MovieApiPrinter
         {
             if (input == "1")
             {
-                //call the get
+                MovieEndPoints mv = new MovieEndPoints();
+                mv.GetMoviesAndPrint();
             }
             else if (input == "2")
             {
