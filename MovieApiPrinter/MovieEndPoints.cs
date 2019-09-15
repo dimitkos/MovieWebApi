@@ -13,17 +13,9 @@ namespace MovieApiPrinter
     {
         public void GetMoviesAndPrint()
         {
-            var client = new RestClient("http://localhost:59881");
-            var request = new RestRequest("api/movie/getMovies", Method.GET);
-            var queryResult = client.Get<GetMoviesResponse>(request).Data;
+            var response = ExecuteGetMovies();
 
-            foreach (var movie in queryResult.Movies)
-            {
-                Console.WriteLine("Title: " + movie.Title);
-                Console.WriteLine("Name: " + movie.Name);
-                Console.WriteLine("Description " + movie.Description);
-                Console.WriteLine("-----------------------------------------------------------------");
-            }
+            PrintMovies(response);
         }
 
         public void AddMovie()
@@ -33,7 +25,7 @@ namespace MovieApiPrinter
             ExecutePostRequest(request);
         }
 
-        #region
+        #region private methods
 
         private AddMovieRequest AddMovieInputRequest()
         {
@@ -60,6 +52,26 @@ namespace MovieApiPrinter
             postRequest.AddParameter("application/json; charset=utf-8", ParameterType.RequestBody);
             postRequest.RequestFormat = DataFormat.Json;
             client.Execute(postRequest);
+        }
+
+        private GetMoviesResponse ExecuteGetMovies()
+        {
+            var client = new RestClient("http://localhost:59881");
+            var request = new RestRequest("api/movie/getMovies", Method.GET);
+            var queryResult = client.Get<GetMoviesResponse>(request).Data;
+
+            return queryResult;
+        }
+
+        private void PrintMovies(GetMoviesResponse getMoviesResponse)
+        {
+            foreach (var movie in getMoviesResponse.Movies)
+            {
+                Console.WriteLine("Title: " + movie.Title);
+                Console.WriteLine("Name: " + movie.Name);
+                Console.WriteLine("Description " + movie.Description);
+                Console.WriteLine("-----------------------------------------------------------------");
+            }
         }
 
         #endregion
