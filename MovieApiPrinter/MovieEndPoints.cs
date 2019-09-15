@@ -1,4 +1,5 @@
-﻿using api.Types.Requests;
+﻿using api.Types.DbTypes;
+using api.Types.Requests;
 using api.Types.Responses;
 using RestSharp;
 using System;
@@ -25,7 +26,30 @@ namespace MovieApiPrinter
             ExecutePostRequest(request);
         }
 
+        public void UpdateMovie()
+        {
+            var request = UpdateInputRequest();
+            ExecuteUpdateRequest(request);
+        }
+
         #region private methods
+
+        private Movie UpdateInputRequest()
+        {
+            Console.WriteLine("Please Enter the Title");
+            string title = Console.ReadLine();
+            Console.WriteLine("Please Enter the Name");
+            string name = Console.ReadLine();
+            Console.WriteLine("Please Enter the Description");
+            string description = Console.ReadLine();
+
+            return new Movie
+            {
+                Title = title.Trim(),
+                Name = name.Trim(),
+                Description = description.Trim()
+            };
+        }
 
         private AddMovieRequest AddMovieInputRequest()
         {
@@ -42,6 +66,16 @@ namespace MovieApiPrinter
                 Name = name.Trim(),
                 Description = description.Trim()
             };
+        }
+
+        private void ExecuteUpdateRequest(Movie request)
+        {
+            var client = new RestClient("http://localhost:59881");
+            var updateRequest = new RestRequest("api/movie/addMovie", Method.PUT);
+            updateRequest.AddJsonBody(request);
+            updateRequest.AddParameter("application/json; charset=utf-8", ParameterType.RequestBody);
+            updateRequest.RequestFormat = DataFormat.Json;
+            client.Execute(updateRequest);
         }
 
         private void ExecutePostRequest(AddMovieRequest request)

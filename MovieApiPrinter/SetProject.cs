@@ -56,7 +56,8 @@ namespace MovieApiPrinter
             }
             else if (input == "3")
             {
-                //update
+                MovieEndPoints mv = new MovieEndPoints();
+                mv.UpdateMovie();
             }
             else if (input == "4")
             {
