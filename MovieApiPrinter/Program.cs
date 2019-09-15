@@ -13,12 +13,8 @@ namespace MovieApiPrinter
     {
         static void Main(string[] args)
         {
-            //PostMovie();
-            //GetMoviesAndPrint();
             SetProject st = new SetProject();
             st.StartUpProject();
-            //StartUpProject();
-            //Console.ReadLine();
         }
 
         public static void GetMoviesAndPrint()

@@ -1,4 +1,5 @@
-﻿using api.Types.Responses;
+﻿using api.Types.Requests;
+using api.Types.Responses;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -24,5 +25,44 @@ namespace MovieApiPrinter
                 Console.WriteLine("-----------------------------------------------------------------");
             }
         }
+
+        public void AddMovie()
+        {
+            var request = AddMovieInputRequest();
+
+            ExecutePostRequest(request);
+        }
+
+        #region
+
+        private AddMovieRequest AddMovieInputRequest()
+        {
+            Console.WriteLine("Please Enter the Title");
+            string title = Console.ReadLine();
+            Console.WriteLine("Please Enter the Name");
+            string name = Console.ReadLine();
+            Console.WriteLine("Please Enter the Description");
+            string description = Console.ReadLine();
+
+            return new AddMovieRequest()
+            {
+                Title = title.Trim(),
+                Name = name.Trim(),
+                Description = description.Trim()
+            };
+        }
+
+        private void ExecutePostRequest(AddMovieRequest request)
+        {
+            var client = new RestClient("http://localhost:59881");
+            var postRequest = new RestRequest("api/movie/addMovie", Method.POST);
+            postRequest.AddJsonBody(request);
+            postRequest.AddParameter("application/json; charset=utf-8", ParameterType.RequestBody);
+            postRequest.RequestFormat = DataFormat.Json;
+            client.Execute(postRequest);
+        }
+
+        #endregion
+
     }
 }

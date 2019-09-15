@@ -14,8 +14,6 @@ namespace MovieApiPrinter
             {
                 DisplayInfo();
 
-                //var input = UserInput();
-
                 CheckInput(UserInput());
 
                 if (ContinueOrNot())
@@ -53,24 +51,8 @@ namespace MovieApiPrinter
             }
             else if (input == "2")
             {
-                //Console.WriteLine("Please Enter the Title");
-                //string title = Console.ReadLine();
-                //Console.WriteLine("Please Enter the Name");
-                //string name = Console.ReadLine();
-                //Console.WriteLine("Please Enter the Description");
-                //string description = Console.ReadLine();
-
-                //AddMovieRequest request = new AddMovieRequest()
-                //{
-                //    Title = title,
-                //    Name = name,
-                //    Description = description
-                //};
-
-                //var client = new RestClient("http://localhost:59881");
-                //var postRequest = new RestRequest("api/movie/getMovies", Method.POST);
-                //postRequest.AddParameter("application/json; charset=utf-8", ParameterType.RequestBody);
-                //postRequest.RequestFormat = DataFormat.Json;
+                MovieEndPoints mv = new MovieEndPoints();
+                mv.AddMovie();
             }
             else if (input == "3")
             {
