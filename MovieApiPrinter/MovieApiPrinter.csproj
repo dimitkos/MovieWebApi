@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IEndPointService.cs" />
     <Compile Include="ISetUpService.cs" />
     <Compile Include="MovieEndPoints.cs" />
     <Compile Include="Program.cs" />

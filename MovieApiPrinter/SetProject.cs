@@ -8,6 +8,13 @@ namespace MovieApiPrinter
 {
     public class SetProject : ISetUpService
     {
+        private readonly IEndPointService endPointService;
+
+        public SetProject(IEndPointService endPointService)
+        {
+            this.endPointService = endPointService;
+        }
+
         public void StartUpProject()
         {
             while (true)
@@ -46,23 +53,19 @@ namespace MovieApiPrinter
         {
             if (input == "1")
             {
-                MovieEndPoints mv = new MovieEndPoints();
-                mv.GetMoviesAndPrint();
+                endPointService.GetMoviesAndPrint();
             }
             else if (input == "2")
             {
-                MovieEndPoints mv = new MovieEndPoints();
-                mv.AddMovie();
+                endPointService.AddMovie();
             }
             else if (input == "3")
             {
-                MovieEndPoints mv = new MovieEndPoints();
-                mv.UpdateMovie();
+                endPointService.UpdateMovie();
             }
             else if (input == "4")
             {
-                MovieEndPoints mv = new MovieEndPoints();
-                mv.DeleteMovie();
+                endPointService.DeleteMovie();
             }
             else
             {

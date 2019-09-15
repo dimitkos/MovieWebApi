@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MovieApiPrinter
 {
-    public class MovieEndPoints
+    public class MovieEndPoints : IEndPointService
     {
         public void GetMoviesAndPrint()
         {

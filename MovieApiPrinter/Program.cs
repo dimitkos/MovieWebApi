@@ -17,12 +17,12 @@ namespace MovieApiPrinter
         static Program()
         {
             container = new Container();
+            container.Register<IEndPointService, MovieEndPoints>();
             container.Register<ISetUpService, SetProject>();
             container.Verify();
         }
         static void Main(string[] args)
         {
-
             var service = container.GetInstance<ISetUpService>();
             service.StartUpProject();
         }
