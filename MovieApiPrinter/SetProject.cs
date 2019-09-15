@@ -61,7 +61,8 @@ namespace MovieApiPrinter
             }
             else if (input == "4")
             {
-                //delete
+                MovieEndPoints mv = new MovieEndPoints();
+                mv.DeleteMovie();
             }
             else
             {

@@ -32,7 +32,24 @@ namespace MovieApiPrinter
             ExecuteUpdateRequest(request);
         }
 
+        public void DeleteMovie()
+        {
+            var request = DeleteInputRequest();
+            ExecuteDeleteRequest(request);
+        }
+
         #region private methods
+
+        private DeleteMovieRequest DeleteInputRequest()
+        {
+            Console.WriteLine("Please Enter the Title");
+            string title = Console.ReadLine();
+
+            return new DeleteMovieRequest
+            {
+                Title = title.Trim()
+            };
+        }
 
         private Movie UpdateInputRequest()
         {
@@ -71,7 +88,7 @@ namespace MovieApiPrinter
         private void ExecuteUpdateRequest(Movie request)
         {
             var client = new RestClient("http://localhost:59881");
-            var updateRequest = new RestRequest("api/movie/addMovie", Method.PUT);
+            var updateRequest = new RestRequest("api/movie/updateMovie", Method.PUT);
             updateRequest.AddJsonBody(request);
             updateRequest.AddParameter("application/json; charset=utf-8", ParameterType.RequestBody);
             updateRequest.RequestFormat = DataFormat.Json;
@@ -95,6 +112,16 @@ namespace MovieApiPrinter
             var queryResult = client.Get<GetMoviesResponse>(request).Data;
 
             return queryResult;
+        }
+
+        private void ExecuteDeleteRequest(DeleteMovieRequest request)
+        {
+            var client = new RestClient("http://localhost:59881");
+            var deleteRequest = new RestRequest("api/movie/deleteMovie", Method.DELETE);
+            deleteRequest.AddJsonBody(request);
+            deleteRequest.AddParameter("application/json; charset=utf-8", ParameterType.RequestBody);
+            deleteRequest.RequestFormat = DataFormat.Json;
+            client.Execute(deleteRequest);
         }
 
         private void PrintMovies(GetMoviesResponse getMoviesResponse)
