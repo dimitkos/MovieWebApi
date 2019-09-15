@@ -15,27 +15,28 @@ namespace MovieApiPrinter
         public void GetMoviesAndPrint()
         {
             var response = ExecuteGetMovies();
-
             PrintMovies(response);
         }
 
         public void AddMovie()
         {
             var request = AddMovieInputRequest();
-
-            ExecutePostRequest(request);
+            var res  = ExecutePostRequest(request);
+            CheckReturnStatus(res);
         }
 
         public void UpdateMovie()
         {
             var request = UpdateInputRequest();
-            ExecuteUpdateRequest(request);
+            var res = ExecuteUpdateRequest(request);
+            CheckReturnStatus(res);
         }
 
         public void DeleteMovie()
         {
             var request = DeleteInputRequest();
-            ExecuteDeleteRequest(request);
+            var res = ExecuteDeleteRequest(request);
+            CheckReturnStatus(res);
         }
 
         #region private methods
@@ -85,24 +86,26 @@ namespace MovieApiPrinter
             };
         }
 
-        private void ExecuteUpdateRequest(Movie request)
+        private IRestResponse ExecuteUpdateRequest(Movie request)
         {
             var client = new RestClient("http://localhost:59881");
             var updateRequest = new RestRequest("api/movie/updateMovie", Method.PUT);
             updateRequest.AddJsonBody(request);
             updateRequest.AddParameter("application/json; charset=utf-8", ParameterType.RequestBody);
             updateRequest.RequestFormat = DataFormat.Json;
-            client.Execute(updateRequest);
+            var status = client.Execute(updateRequest);
+            return status;
         }
 
-        private void ExecutePostRequest(AddMovieRequest request)
+        private IRestResponse ExecutePostRequest(AddMovieRequest request)
         {
             var client = new RestClient("http://localhost:59881");
             var postRequest = new RestRequest("api/movie/addMovie", Method.POST);
             postRequest.AddJsonBody(request);
             postRequest.AddParameter("application/json; charset=utf-8", ParameterType.RequestBody);
             postRequest.RequestFormat = DataFormat.Json;
-            client.Execute(postRequest);
+            var status = client.Execute(postRequest);
+            return status;
         }
 
         private GetMoviesResponse ExecuteGetMovies()
@@ -114,14 +117,15 @@ namespace MovieApiPrinter
             return queryResult;
         }
 
-        private void ExecuteDeleteRequest(DeleteMovieRequest request)
+        private IRestResponse ExecuteDeleteRequest(DeleteMovieRequest request)
         {
             var client = new RestClient("http://localhost:59881");
             var deleteRequest = new RestRequest("api/movie/deleteMovie", Method.DELETE);
             deleteRequest.AddJsonBody(request);
             deleteRequest.AddParameter("application/json; charset=utf-8", ParameterType.RequestBody);
             deleteRequest.RequestFormat = DataFormat.Json;
-            client.Execute(deleteRequest);
+            var status = client.Execute(deleteRequest);
+            return status;
         }
 
         private void PrintMovies(GetMoviesResponse getMoviesResponse)
@@ -132,6 +136,18 @@ namespace MovieApiPrinter
                 Console.WriteLine("Name: " + movie.Name);
                 Console.WriteLine("Description " + movie.Description);
                 Console.WriteLine("-----------------------------------------------------------------");
+            }
+        }
+
+        private void CheckReturnStatus(IRestResponse res)
+        {
+            if (res.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                Console.WriteLine("The translaction is sucessfull");
+            }
+            else
+            {
+                Console.WriteLine("Something goes wrong ...: " + res.ErrorException);
             }
         }
 
