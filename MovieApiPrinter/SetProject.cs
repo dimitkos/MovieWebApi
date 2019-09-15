@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieApiPrinter
 {
-    public class SetProject
+    public class SetProject : ISetUpService
     {
         public void StartUpProject()
         {
