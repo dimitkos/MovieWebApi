@@ -49,12 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IEndPointService.cs" />
-    <Compile Include="ISetUpService.cs" />
-    <Compile Include="MovieEndPoints.cs" />
+    <Compile Include="interfaces\IEndPointService.cs" />
+    <Compile Include="interfaces\ISetUpService.cs" />
+    <Compile Include="Implementation\MovieEndPoints.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SetProject.cs" />
+    <Compile Include="Implementation\SetProject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
